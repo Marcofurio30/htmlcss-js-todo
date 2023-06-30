@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List</title>
+    <link rel="stylesheet" href="main.css">
+    <!-- Fonts -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,400;0,700;0,900;1,400&family=Montserrat:ital,wght@0,400;0,700;0,900;1,400&display=swap" rel="stylesheet">
+	<!-- End of Fonts -->
+</head>
+<body>
+    <main class="app">
+        
+        <section class="greeting">
+            <h2 class="title">
+                Bonjour, <input type="text" id="name" placeholder="votre prénom">
+            </h2>
+        </section>
+        <section class="create-todo">
+            <h3>Créer une tâche</h3>
+            <form id="new-todo-form">
+                <h4>Inserer l'intitulé de votre tâche</h4>
+                <input 
+                    type="text" 
+                    name="content" 
+                    id="content" 
+                    placeholder="Exemple: Dormir">
+                <h4>Sélectionner une catégorie</h4>
+                <div class="options">
+
+                    <label>
+                        <input 
+                            type="radio" 
+                            name="category" 
+                            id="category1" 
+                            value="business">
+                        <span class="bubble business"></span>
+                        <div>Business</div>
+                    </label>
+
+                    <label>
+                        <input 
+                            type="radio" 
+                            name="category" 
+                            id="category2" 
+                            value="personal">
+                        <span class="bubble personal"></span>
+                        <div>Personnel</div>
+                    </label>
+
+
+                </div>
+
+                <input type="submit" value="Ajouter la tâche">
+            </form>
+        </section>
+
+        <section class="todo-list">
+            <h3>Todo List</h3>
+            <div class="list" id="todo-list">
+                <!-- <div class="todo-item">
+                    <label>
+                        <input type="checkbox">
+                        <span class="bubble business"></span>
+                    </label>
+
+                    <div class="todo-content">
+                        <input type="text" value="Gagner de l'argent" readonly>
+                    </div>
+
+                    <div class="actions">
+                        <button class="edit">Editer</button>
+                        <button class="delete">Supprimer</button>
+                    </div>
+                </div>
+
+                <div class="todo-item">
+                    <label>
+                        <input type="checkbox">
+                        <span class="bubble personal"></span>
+                    </label>
+
+                    <div class="todo-content">
+                        <input type="text" value="Aller au lit" readonly>
+                    </div>
+
+                    <div class="actions">
+                        <button class="edit">Editer</button>
+                        <button class="delete">Supprimer</button>
+                    </div>
+                </div> -->
+            </div>
+        </section>
+    </div>
+
+    </main>
+
+    <div class="warning default">
+        <img class="warningicon" src="img/warning.svg">
+        <span class="warningtext">warning test</span>
+        <span class="customwarningtext">Votre tâche ne peut pas être vide!</span>
+    </div>
+      
+
+
+    <script src="main.js"></script>
+</body>
+</html>
