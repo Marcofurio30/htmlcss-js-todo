@@ -36,40 +36,28 @@ window.addEventListener('load', () => {
 
               
         } */      
-        if (todo.content == '') {
-            createNotification("warning");
-            const submitButton = document.querySelector("#new-todo-form > input[type=submit]:nth-child(5)");
-            submitButton.disabled = true; //disable submit button to prevent bug
-            var warning_notif = document.querySelector('.notif.default');
-            warning_notif.classList.remove("default");
-            warning_notif.classList.add("show");
-          
-            setTimeout(function() {
-              warning_notif.classList.remove("show");
-              warning_notif.classList.add("hide");
-          
-              setTimeout(function() {
-                warning_notif.classList.remove("hide");
-                warning_notif.classList.add("default");
-                submitButton.disabled = false; //re-enable sumbit button
-                // animation ended we can delete here
-
-                if (warning_notif) {
-                    warning_notif.remove();
-                } 
-              }, 800);
-            }, 800);
+        if (todo.content == '' || todo.category == '') {
+            
+            if (todo.category == '') {
+                createNotification("warning", "Veuillez selectionner une catégorie!");
+                const submitButton = document.querySelector("#new-todo-form > input[type=submit]:nth-child(5)");
+                showNotification(submitButton);
+            }
+            if (todo.content == '') {
+                createNotification("warning", "Votre tâche ne peut pas être vide!");
+                const submitButton = document.querySelector("#new-todo-form > input[type=submit]:nth-child(5)");
+                showNotification(submitButton);
+            }
           }
           else {
 
-            console.log(todo.content);
-
+            //console.log(todo.content);
             todos.push(todo);
-
             localStorage.setItem('todos', JSON.stringify(todos));
-
             e.target.reset();
-
+            createNotification("success", "Tâche ajoutée avec succès.");
+            const submitButton = document.querySelector("#new-todo-form > input[type=submit]:nth-child(5)");
+            showNotification(submitButton);
             DisplayTodos();
 
           }
@@ -153,6 +141,8 @@ function DisplayTodos () {
                 todo.content = e.target.value;
                 localStorage.setItem('todos', JSON.stringify(todos));
                 DisplayTodos();
+                createNotification("success", "Votre tâche a bien été éditée.")
+                showNotification(input)
             })
         })
 
@@ -165,18 +155,17 @@ function DisplayTodos () {
     });
 }
 
-function createNotification(type) {
+function createNotification(type, customtext) {
 
     var title = ""
-    var customtext = ""
 
     if (type == "warning") {
         title = "Attention!"
-        customtext = "Votre tâche ne peut pas être vide!"
+        //customtext = "Votre tâche ne peut pas être vide!"
     }
     if (type == "success") {
         title = "Succès"
-        customtext = "Votre tâche a bien été ajoutée"
+        //customtext = "Votre tâche a bien été ajoutée"
     }
 
     const body = document.querySelector('body'); // il fallait append la notifbox au body...
@@ -199,7 +188,28 @@ function createNotification(type) {
     body.appendChild(notifbox);
 }
 
-
+function showNotification(submitButton) {
+    submitButton.disabled = true;
+  
+    const warning_notif = document.querySelector('.notif.default');
+    warning_notif.classList.remove("default");
+    warning_notif.classList.add("show");
+  
+    setTimeout(function() {
+      warning_notif.classList.remove("show");
+      warning_notif.classList.add("hide");
+  
+      setTimeout(function() {
+        warning_notif.classList.remove("hide");
+        warning_notif.classList.add("default");
+        submitButton.disabled = false;
+  
+        if (warning_notif) {
+          warning_notif.remove();
+        }
+      }, 800);
+    }, 800);
+  }
 
 // DONE prevent void task
 //prevent no category selected
