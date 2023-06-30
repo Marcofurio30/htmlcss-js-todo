@@ -20,6 +20,12 @@
     font-family: 'montserrat', sans-serif;
 }
 
+.app {
+    max-width: 1000px;
+    width: 100%;
+    padding: 0 10px;
+}
+
 input:not([type="radio"]):not([type="checkbox"]), button {
     appearance: none;
     border: none;
@@ -32,6 +38,8 @@ body {
     background-color: #20242c;
     color: var(--dark);
     overflow-x: hidden;
+    display: flex;
+    justify-content: center;
 }
 
 section {
@@ -199,6 +207,7 @@ input:checked ~ .bubble::after {
 .todo-item .todo-content input {
     color: var(--dark);
     font-size: 1.125rem;
+    width: 95%;
 }
 
 .todo-item .actions {

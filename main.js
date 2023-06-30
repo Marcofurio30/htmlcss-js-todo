@@ -212,5 +212,5 @@ function showNotification(submitButton) {
   }
 
 // DONE prevent void task
-//prevent no category selected
+// DONE prevent no category selected
 //add added time somewhere
