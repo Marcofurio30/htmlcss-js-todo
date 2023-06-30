@@ -37,10 +37,10 @@ window.addEventListener('load', () => {
               
         } */      
         if (todo.content == '') {
-            createNotification();
+            createNotification("warning");
             const submitButton = document.querySelector("#new-todo-form > input[type=submit]:nth-child(5)");
             submitButton.disabled = true; //disable submit button to prevent bug
-            var warning_notif = document.querySelector('.warning.default');
+            var warning_notif = document.querySelector('.notif.default');
             warning_notif.classList.remove("default");
             warning_notif.classList.add("show");
           
@@ -56,7 +56,7 @@ window.addEventListener('load', () => {
 
                 if (warning_notif) {
                     warning_notif.remove();
-                }
+                } 
               }, 800);
             }, 800);
           }
@@ -165,23 +165,35 @@ function DisplayTodos () {
     });
 }
 
-function createNotification() {
+function createNotification(type) {
+
+    var title = ""
+    var customtext = ""
+
+    if (type == "warning") {
+        title = "Attention!"
+        customtext = "Votre tâche ne peut pas être vide!"
+    }
+    if (type == "success") {
+        title = "Succès"
+        customtext = "Votre tâche a bien été ajoutée"
+    }
 
     const body = document.querySelector('body'); // il fallait append la notifbox au body...
 
     const notifbox = document.createElement('div');
-    notifbox.classList.add('warning','default');
+    notifbox.classList.add('notif',type,'default');
     const icon = document.createElement('img'); // create icon
-    icon.className = 'warningicon';
-    icon.src = 'img/warning.svg';
+    icon.className = 'notificon';
+    icon.src = 'img/' + type + '.svg';
 
     notifbox.appendChild(icon); // append icon to notifbox
     const notiftitle = document.createElement('span');
-    notiftitle.classList.add('warningtext');
-    notiftitle.innerHTML = "Attention";
+    notiftitle.classList.add('notiftext');
+    notiftitle.innerHTML = title;
     const notiftext = document.createElement('span');
-    notiftext.classList.add('customwarningtext');
-    notiftext.innerHTML = "Votre tâche ne peut pas être vide!";
+    notiftext.classList.add('customnotiftext');
+    notiftext.innerHTML = customtext;
     notifbox.appendChild(notiftitle);
     notifbox.appendChild(notiftext);
     body.appendChild(notifbox);

@@ -232,7 +232,7 @@ input:checked ~ .bubble::after {
     color: var(--grey);
 }
 
-.warning {
+.notif {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: 10px;
@@ -242,7 +242,6 @@ input:checked ~ .bubble::after {
     border-top-left-radius: 1px solid #FFDF8D; */
     border-bottom-left-radius: 12px;
     border-top-left-radius: 12px;
-    background: linear-gradient(131deg, #F8B806 0%, #FF8C04 100%);
     position: absolute;
     right: 0px;
     top: -1px;
@@ -252,15 +251,23 @@ input:checked ~ .bubble::after {
     
 }
 
-.warning:hover {
-    box-shadow: 7px 5px 5px #FF8C04;
+.notif.warning {
+    background: linear-gradient(131deg, #F8B806 0%, #FF8C04 100%);
 }
 
-.warning.show {
+.notif.success {
+    background: linear-gradient(145deg, #32BB71 18.30%, #2A9D8F 100%);
+}
+
+.notif:hover {
+    box-shadow: 7px 5px 5px #535a6983;
+}
+
+.notif.show {
     animation: notif-anim 2s ease forwards;
 }
 
-.warning.hide {
+.notif.hide {
   opacity: 1;
   animation-name: fadeOut;
   animation-duration: 2s;
@@ -268,7 +275,7 @@ input:checked ~ .bubble::after {
 
 }
 
-.warning.default {
+.notif.default {
     display: none;
 }
 
@@ -298,7 +305,7 @@ input:checked ~ .bubble::after {
     }
   }
 
-.warningicon {
+.notificon {
     position: absolute;
     top: 2px;
     left: 2px;
@@ -306,7 +313,7 @@ input:checked ~ .bubble::after {
     filter: invert(); /* logo noir de base -> vers */
   }
 
-.warningtext {
+.notiftext {
     position: absolute;
     font-size: 16px;
     padding-left: 40px;
@@ -317,7 +324,7 @@ input:checked ~ .bubble::after {
     
 }
 
-.customwarningtext {
+.customnotiftext {
     font-size: 12px;
     padding-left: 27.5px;
     padding-top: 20px;
