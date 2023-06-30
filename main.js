@@ -10,6 +10,7 @@ window.addEventListener('load', () => {
         localStorage.setItem('username', e.target.value);
     })
 
+
     newTodoForm.addEventListener('submit', e => {
         e.preventDefault();
 
@@ -36,6 +37,7 @@ window.addEventListener('load', () => {
               
         } */      
         if (todo.content == '') {
+            createNotification();
             const submitButton = document.querySelector("#new-todo-form > input[type=submit]:nth-child(5)");
             submitButton.disabled = true; //disable submit button to prevent bug
             var warning_notif = document.querySelector('.warning.default');
@@ -50,6 +52,11 @@ window.addEventListener('load', () => {
                 warning_notif.classList.remove("hide");
                 warning_notif.classList.add("default");
                 submitButton.disabled = false; //re-enable sumbit button
+                // animation ended we can delete here
+
+                if (warning_notif) {
+                    warning_notif.remove();
+                }
               }, 800);
             }, 800);
           }
@@ -157,6 +164,29 @@ function DisplayTodos () {
 
     });
 }
+
+function createNotification() {
+
+    const body = document.querySelector('body'); // il fallait append la notifbox au body...
+
+    const notifbox = document.createElement('div');
+    notifbox.classList.add('warning','default');
+    const icon = document.createElement('img'); // create icon
+    icon.className = 'warningicon';
+    icon.src = 'img/warning.svg';
+
+    notifbox.appendChild(icon); // append icon to notifbox
+    const notiftitle = document.createElement('span');
+    notiftitle.classList.add('warningtext');
+    notiftitle.innerHTML = "Attention";
+    const notiftext = document.createElement('span');
+    notiftext.classList.add('customwarningtext');
+    notiftext.innerHTML = "Votre tâche ne peut pas être vide!";
+    notifbox.appendChild(notiftitle);
+    notifbox.appendChild(notiftext);
+    body.appendChild(notifbox);
+}
+
 
 
 // DONE prevent void task
